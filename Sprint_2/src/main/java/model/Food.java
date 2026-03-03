@@ -1,6 +1,9 @@
 package model;
 
-public abstract class Food {
+import model.constans.Colour;
+import model.constans.Discount;
+
+public abstract class Food implements Discountable {
     protected int amount;
     protected double price;
     protected boolean isVegetarian;
@@ -19,5 +22,14 @@ public abstract class Food {
     }
     public boolean hasVegetarian(){
         return isVegetarian;
+    }
+
+    @Override
+    public double getDiscounter(String colour) {
+        if (colour.equals(Colour.RED)) {
+            return Discount.DISCOUNT;
+        } else {
+            return Discount.NODISCOUNT;
+        }
     }
 }
